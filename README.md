@@ -77,9 +77,9 @@ make install
 - Replace Replace line 620 in cpu/include/rtems/score/percpu.h:620 with ```Per_CPU_Control_envelope _Per_CPU_Information[1U];```
 
 ### Copy the files of this repository to the following locations:
-- _stub.h_: cpukit directory
+- Both stub files: cpukit directory
 - other headerfiles: cpukit/include/rtems/score
-- c files: cpukit/score/source
+- c files: cpukit/score/src
 
 ## Functionlist
 For verifying the functions, select the corresponding function on the left side of the GUI. In the following is a list with all the relevant annontated functions.
