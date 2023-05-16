@@ -9,6 +9,8 @@ The contracts are tested with Frama-C 25 and Alt-Ergo 2.4.2
 RTEMS 5.1 is needed for verification.
 
 ### Frama-C
+
+#### Installation
 Follow the instructions to install Frama-C https://frama-c.com/html/get-frama-c.html:
 1. Install opam (OCaml package manager): Use the package manager based on your distribution
 
@@ -27,6 +29,10 @@ opam install frama-c
 ```
 why3 config detect
 ```
+
+#### Invoking Frama-C GUI
+- Open your terminal in the cpukit folder and execute the following command (change to your local paths):
+
 
 ### RTEMS 5.1
 Follow the instructions here to setup RTEMS 5.1: https://ftp.rtems.org/pub/rtems/releases/5/5.1/docs/html/user.html#document-start/index
@@ -52,5 +58,10 @@ $HOME/Thesis/RTEMS/src/rtems-5.1/configure \
 make
 make install
 ```
+
+### File locations
+- _stub.h_: cpukit directory
+- other headerfiles: cpukit/include/rtems/score
+- c files: cpukit/score/source
 
 
