@@ -2,7 +2,20 @@
 This repository contains the files to reproduce the results of the master thesis:
 _Formal Verification of EDF Scheduler in RTEMS_
 
-## Functionlist
+- [Enviroment Setup](#enviroment-setup)
+  * [Frama-C](#frama-c)
+    + [Installation](#installation)
+    + [Invoking Frama-C GUI](#invoking-frama-c-gui)
+  * [RTEMS 5.1](#rtems-51)
+    + [2.4 Install the Tool Suite:](#24-install-the-tool-suite-)
+    + [2.6.2 Manual BSP Build:](#262-manual-bsp-build-)
+  * [Source Code Modification to make it run with Frama-C](#source-code-modification-to-make-it-run-with-frama-c)
+  * [Copy the files of this repository to the following locations:](#copy-the-files-of-this-repository-to-the-following-locations-)
+- [Functionlist](#functionlist)
+  * [Thread Priority](#thread-priority)
+  * [EDF Releasing and Cancelling a Job](#edf-releasing-and-cancelling-a-job)
+  * [EDF Update Priority (needs inline calls)](#edf-update-priority--needs-inline-calls-)
+  * [EDF Unblock (needs inline calls)](#edf-unblock--needs-inline-calls-)
 
 ## Enviroment Setup
 The contracts are tested with Frama-C 25 and Alt-Ergo 2.4.2
@@ -67,5 +80,63 @@ make install
 - _stub.h_: cpukit directory
 - other headerfiles: cpukit/include/rtems/score
 - c files: cpukit/score/source
+
+## Functionlist
+
+### Thread Priority
+   - cpukit/score/src/threadchangepriority.c: 
+       - _Thread_Set_scheduler_node_priority (*)
+       - _Thread_Priority_action_change (*)
+       - _Thread_Priority_do_perform_actions (*)
+       - _Thread_Priority_apply (*)
+       - _Thread_Priority_add (*)
+       - _Thread_Priority_remove (*)
+       - _Thread_Priority_changed (*)
+  - cpukit/include/rtems/score/priorityimpl.h
+       - _Priority_Actions_move
+       - _Priority_Get_next_action        
+       - _Priority_Non_empty_insert (*)
+       - _Priority_Extract_non_empty (*)
+       - _Priority_Changed (*)
+       - _Priority_Actions_is_empty
+       - _Priority_Actions_add
+      - _Priority_Actions_initialize_one
+       - _Priority_Get_priority
+   - cpukit/include/rtems/score/threadqimpl.h
+       - _Thread_queue_Context_add_priority_update (*)
+   - cpukit/include/rtems/score/schedulernodeimpl.h:
+       - _Scheduler_Node_set_priority
+   - stubs:
+       - _Helper_RBTree_Minimum
+       - _Thread_queue_Do_nothing_priority_actions
+
+### EDF Update Priority (needs inline calls)
+   - cpukit/score/src/scheduleredfchangepriority.c
+       - _Scheduler_EDF_Update_priority (*)
+   - cpukit/include/rtems/score/threadimpl.h
+       - _Thread_Is_ready
+   - cpukit/include/rtems/score/scheduleredfimpl.h
+       - _Scheduler_EDF_Node_downcast
+       - _Scheduler_EDF_Get_context
+       - _Scheduler_EDF_Schedule_body (*)
+   - cpukit/include/rtems/score/schedulernodeimpl.h
+       - _Scheduler_Node_get_priority
+   - cpukit/include/rtems/score/schedulerimpl.h
+       - _Scheduler_Update_heir (*)
+       
+### EDF Unblock (needs inline calls)
+   - cpukit/score/src/scheduleredfunblock.c
+       - _Scheduler_EDF_Unblock (*)
+  
+### EDF Releasing and Cancelling a Job
+  - cpukit/score/src/scheduleredfreleasejob.c
+       - _Scheduler_EDF_Release_job (*)
+       - _Scheduler_EDF_Cancel_job (*)
+       - _Scheduler_EDF_Map_priority
+       - _Scheduler_EDF_Unmap_priority
+  - cpukit/include/rtems/score/priorityimpl.h
+       - _Priority_Node_is_active
+       - _Priority_Node_set_inactive
+       - _Priority_Node_set_priority
 
 
