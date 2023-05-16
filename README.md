@@ -44,7 +44,7 @@ why3 config detect
 ```
 
 #### Invoking Frama-C GUI
-- Open your terminal in the cpukit folder and execute the following command (change to your local paths):
+- Please see the examples under the [Functionlist](#functionlist) section.
 
 
 ### RTEMS 5.1
