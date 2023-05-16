@@ -140,3 +140,12 @@ RTEMS_INLINE_ROUTINE bool _States_Is_ready (
 RTEMS_INLINE_ROUTINE bool _Thread_Is_ready( 
   const Thread_Control *the_thread 
 );
+
+/*@
+  requires \valid_read(the_thread) && \valid(the_thread->Scheduler.nodes);
+  assigns \nothing;
+  ensures \result == the_thread->Scheduler.nodes->Wait.Priority.Node.priority;
+*/
+RTEMS_INLINE_ROUTINE Priority_Control _Thread_Get_priority(
+  const Thread_Control *the_thread
+);
