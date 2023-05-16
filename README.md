@@ -82,9 +82,23 @@ make install
 - c files: cpukit/score/source
 
 ## Functionlist
+For verifying the functions, select the corresponding function on the left side of the GUI. In the following is a list with all the relevant annontated functions.
+Additionally, example commands are provided to invoke the verification with Frama-C.
 
 ### Thread Priority
-   - cpukit/score/src/threadchangepriority.c: 
+```
+frama-c-gui       -cpp-command '$HOME/Thesis/RTEMS/rtems_x86_64/bin/x86_64-rtems5-gcc -C -E \
+      -I./include -I./score/cpu/x86_64/include/ \
+      -I../../../build/amd64/x86_64-rtems5/c/amd64/include/ \
+      -I$HOME/Thesis/RTEMS/rtems_x86_64/x86_64-rtems5/include \
+      -I$HOME/Thesis/RTEMS/rtems_x86_64/lib/gcc/x86_64-rtems5/9.3.0/include \
+      -nostdinc -include stubs.h' -machdep gcc_x86_64 -cpp-frama-c-compliant -c11  \
+      -inline-calls '_Priority_Node_is_active,_Priority_Extract_non_empty, _Priority_Non_empty_insert, _Priority_Changed' 'score/src/threadchangepriority.c'
+```
+For the _Thread_Priority_apply function add _Thread_Priority_do_perform_actions to the inline functions under Analysis->Kernel->Customizing Normalization in the GUI <br>
+For the ..._add,remove and changed function, add the _Thread_Priority_apply in addition to the perform_actions function above, for the assigns to work.
+ 
+  - cpukit/score/src/threadchangepriority.c
        - _Thread_Set_scheduler_node_priority (*)
        - _Thread_Priority_action_change (*)
        - _Thread_Priority_do_perform_actions (*)
@@ -110,7 +124,16 @@ make install
        - _Helper_RBTree_Minimum
        - _Thread_queue_Do_nothing_priority_actions
 
-### EDF Update Priority (needs inline calls)
+### EDF Update Priority
+```
+frama-c-gui       -cpp-command '$HOME/Thesis/RTEMS/rtems_x86_64/bin/x86_64-rtems5-gcc -C -E \
+      -I./include -I./score/cpu/x86_64/include/ \
+      -I../../../build/amd64/x86_64-rtems5/c/amd64/include/ \
+      -I$HOME/Thesis/RTEMS/rtems_x86_64/x86_64-rtems5/include \
+      -I$HOME/Thesis/RTEMS/rtems_x86_64/lib/gcc/x86_64-rtems5/9.3.0/include \
+      -nostdinc -include stubs.h' -machdep gcc_x86_64 -cpp-frama-c-compliant -c11  \
+      -inline-calls '_Scheduler_Update_heir, _Scheduler_EDF_Schedule_body' 'score/src/scheduleredfchangepriority.c'
+ ```
    - cpukit/score/src/scheduleredfchangepriority.c
        - _Scheduler_EDF_Update_priority (*)
    - cpukit/include/rtems/score/threadimpl.h
@@ -124,11 +147,29 @@ make install
    - cpukit/include/rtems/score/schedulerimpl.h
        - _Scheduler_Update_heir (*)
        
-### EDF Unblock (needs inline calls)
+### EDF Unblock
+```
+frama-c-gui       -cpp-command '$HOME/Thesis/RTEMS/rtems_x86_64/bin/x86_64-rtems5-gcc -C -E \
+      -I./include -I./score/cpu/x86_64/include/ \
+      -I../../../build/amd64/x86_64-rtems5/c/amd64/include/ \
+      -I$HOME/Thesis/RTEMS/rtems_x86_64/x86_64-rtems5/include \
+      -I$HOME/Thesis/RTEMS/rtems_x86_64/lib/gcc/x86_64-rtems5/9.3.0/include \
+      -nostdinc -include stubs.h' -machdep gcc_x86_64 -cpp-frama-c-compliant -c11  \
+      -inline-calls '_Scheduler_Update_heir' 'score/src/scheduleredfunblock.c'
+```
    - cpukit/score/src/scheduleredfunblock.c
        - _Scheduler_EDF_Unblock (*)
   
 ### EDF Releasing and Cancelling a Job
+```
+frama-c-gui       -cpp-command '$HOME/Thesis/RTEMS/rtems_x86_64/bin/x86_64-rtems5-gcc -C -E \
+      -I./include -I./score/cpu/x86_64/include/ \
+      -I../../../build/amd64/x86_64-rtems5/c/amd64/include/ \
+      -I$HOME/Thesis/RTEMS/rtems_x86_64/x86_64-rtems5/include \
+      -I$HOME/Thesis/RTEMS/rtems_x86_64/lib/gcc/x86_64-rtems5/9.3.0/include \
+      -nostdinc -include release_cancel_stubs.h' -machdep gcc_x86_64 -cpp-frama-c-compliant -c11  \
+      'score/src/scheduleredfreleasejob.c'
+```
   - cpukit/score/src/scheduleredfreleasejob.c
        - _Scheduler_EDF_Release_job (*)
        - _Scheduler_EDF_Cancel_job (*)
