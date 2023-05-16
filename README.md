@@ -80,6 +80,30 @@ make install
 - Both stub files: cpukit directory
 - other headerfiles: cpukit/include/rtems/score
 - c files: cpukit/score/src
+```
+├── build
+│   └── amd64 
+├── rtems_x86_64
+├── src
+|   ├── rtems-5.1
+|   |   ├── cpukit
+|   |   |   ├── stubs.h
+|   |   |   ├── release_and_cancel_stubs.h
+|   |   |   ├── score
+|   |   |   |   └── src
+|   |   |   |       ├── scheduleredfchangepriority.c
+|   |   |   |       ├── scheduleredfreleasejob.c
+|   |   |   |       ├── scheduleredfunblock.c
+|   |   |   |       └── threadchangepriority.c
+|   |   |   └── include
+|   |   |       └── rtems
+|   |   |           └── score
+|   |   |               ├── priorityimpl.h
+|   |   |               ├── scheduleredfimpl.h
+|   |   |               └── schedulerimpl.h
+|   |   └── (...)
+```
+
 
 ## Functionlist
 For verifying the functions, select the corresponding function on the left side of the GUI. In the following is a list with all the relevant annontated functions.
