@@ -18,7 +18,7 @@ _Formal Verification of EDF Scheduler in RTEMS_
   * [EDF Unblock (needs inline calls)](#edf-unblock--needs-inline-calls-)
 
 ## Enviroment Setup
-The contracts are tested with Frama-C 25 and Alt-Ergo 2.4.2
+The contracts are tested with Frama-C 25 and Alt-Ergo 2.4.2 <br>
 RTEMS 5.1 is needed for verification.
 
 ### Frama-C
