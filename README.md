@@ -10,7 +10,7 @@ _Formal Verification of EDF Scheduler in RTEMS_
     + [2.4 Install the Tool Suite:](#24-install-the-tool-suite-)
     + [2.6.2 Manual BSP Build:](#262-manual-bsp-build-)
   * [Source Code Modification to make it run with Frama-C](#source-code-modification-to-make-it-run-with-frama-c)
-  * [Copy the files of this repository to the following locations](#copy-the-files-of-this-repository-to-the-following-locations-)
+  * [Copy the files of this repository to the following locations](#copy-the-files-of-this-repository-to-the-following-locations)
 - [Functionlist](#functionlist)
   * [Thread Priority](#thread-priority)
   * [EDF Releasing and Cancelling a Job](#edf-releasing-and-cancelling-a-job)
@@ -76,7 +76,7 @@ make install
 - Comment out line 883 in cpu/include/rtems/score/thread.h:883
 - Replace Replace line 620 in cpu/include/rtems/score/percpu.h:620 with ```Per_CPU_Control_envelope _Per_CPU_Information[1U];```
 
-### Copy the files of this repository to the following locations:
+### Copy the files of this repository to the following locations
 - Both stub files: cpukit directory
 - other headerfiles: cpukit/include/rtems/score
 - c files: cpukit/score/src
