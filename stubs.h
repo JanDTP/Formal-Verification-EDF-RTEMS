@@ -81,3 +81,62 @@ RTEMS_INLINE_ROUTINE void _Thread_queue_Context_add_priority_update(
 RTEMS_INLINE_ROUTINE Scheduler_Node *_Thread_Scheduler_get_home_node(
   const Thread_Control *the_thread
 );
+
+/*@
+ requires \valid(node);
+ assigns node->Priority.value;
+ behavior prepend:
+  assumes prepend_it;
+  ensures node->Priority.value == (new_priority | 0);
+ behavior no_prepend:
+  assumes !prepend_it;
+  ensures node->Priority.value == (new_priority | 1);
+ disjoint behaviors;
+ complete behaviors;  
+ */
+RTEMS_INLINE_ROUTINE void _Scheduler_Node_set_priority(
+  Scheduler_Node   *node,
+  Priority_Control  new_priority,
+  bool              prepend_it
+);
+
+/*@
+  requires \valid(node);
+  assigns \nothing;
+  ensures \result == node->Priority.value;
+*/
+RTEMS_INLINE_ROUTINE Priority_Control _Scheduler_Node_get_priority(
+  Scheduler_Node *node
+);
+
+/*@
+  assigns \nothing;
+ */
+RTEMS_INLINE_ROUTINE Per_CPU_Control *_Thread_Get_CPU(
+  const Thread_Control *thread
+);
+
+/*@
+ assigns \nothing;
+ */
+RTEMS_INLINE_ROUTINE void _Thread_Update_CPU_time_used(
+  Thread_Control  *the_thread,
+  Per_CPU_Control *cpu
+);
+
+/*@
+  assigns \nothing;
+  ensures \result == (the_states == STATES_READY);
+*/
+RTEMS_INLINE_ROUTINE bool _States_Is_ready (
+  States_Control the_states
+);
+
+/*@
+  requires \valid_read(the_thread);
+  assigns \nothing;
+  ensures \result == (the_thread->current_state == STATES_READY);
+*/
+RTEMS_INLINE_ROUTINE bool _Thread_Is_ready( 
+  const Thread_Control *the_thread 
+);
