@@ -14,6 +14,7 @@
   extern Scheduler_Node *g_scheduler_node_of_wait_priority_node;
   extern Scheduler_EDF_Node *g_min_edf_node;
   extern Scheduler_EDF_Context *g_edf_sched_context;
+  extern bool g_new_minimum;
 */
 static void _Thread_Priority_action_change(
   Priority_Aggregation *priority_aggregation,
@@ -257,3 +258,19 @@ void _Thread_Priority_remove(
     Thread_Control *the_thread,
     Priority_Node *priority_node,
     Thread_queue_Context *queue_context);
+    
+/*@
+ assigns \nothing;
+ */
+RTEMS_INLINE_ROUTINE void _Thread_Wait_acquire_critical(
+  Thread_Control       *the_thread,
+  Thread_queue_Context *queue_context
+);
+
+/*@
+ assigns \nothing;
+ */
+RTEMS_INLINE_ROUTINE void _Thread_Wait_release_critical(
+  Thread_Control       *the_thread,
+  Thread_queue_Context *queue_context
+);
