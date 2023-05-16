@@ -10,7 +10,7 @@ _Formal Verification of EDF Scheduler in RTEMS_
     + [2.4 Install the Tool Suite:](#24-install-the-tool-suite-)
     + [2.6.2 Manual BSP Build:](#262-manual-bsp-build-)
   * [Source Code Modification to make it run with Frama-C](#source-code-modification-to-make-it-run-with-frama-c)
-  * [Copy the files of this repository to the following locations:](#copy-the-files-of-this-repository-to-the-following-locations-)
+  * [Copy the files of this repository to the following locations](#copy-the-files-of-this-repository-to-the-following-locations-)
 - [Functionlist](#functionlist)
   * [Thread Priority](#thread-priority)
   * [EDF Releasing and Cancelling a Job](#edf-releasing-and-cancelling-a-job)
