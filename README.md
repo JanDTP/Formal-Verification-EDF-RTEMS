@@ -61,6 +61,7 @@ make install
 #### 
 - Comment out limits.h in cpu/include/rtems/score/scheduleredf.h:29
 - Comment out line 883 in cpu/include/rtems/score/thread.h:883
+- Replace Replace line 620 in cpu/include/rtems/score/percpu.h:620 with ```Per_CPU_Control_envelope _Per_CPU_Information[1U];```
 
 #### File locations
 - _stub.h_: cpukit directory
