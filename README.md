@@ -58,8 +58,11 @@ $HOME/Thesis/RTEMS/src/rtems-5.1/configure \
 make
 make install
 ```
+#### 
+- Comment out limits.h in cpu/include/rtems/score/scheduleredf.h:29
+- Comment out line 883 in cpu/include/rtems/score/thread.h:883
 
-### File locations
+#### File locations
 - _stub.h_: cpukit directory
 - other headerfiles: cpukit/include/rtems/score
 - c files: cpukit/score/source
