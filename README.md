@@ -58,12 +58,12 @@ $HOME/Thesis/RTEMS/src/rtems-5.1/configure \
 make
 make install
 ```
-#### 
+### Source Code Modification to make it run with Frama-C
 - Comment out limits.h in cpu/include/rtems/score/scheduleredf.h:29
 - Comment out line 883 in cpu/include/rtems/score/thread.h:883
 - Replace Replace line 620 in cpu/include/rtems/score/percpu.h:620 with ```Per_CPU_Control_envelope _Per_CPU_Information[1U];```
 
-#### File locations
+### Copy the files of this repository to the following locations:
 - _stub.h_: cpukit directory
 - other headerfiles: cpukit/include/rtems/score
 - c files: cpukit/score/source
