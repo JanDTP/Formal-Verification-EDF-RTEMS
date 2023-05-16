@@ -274,3 +274,19 @@ RTEMS_INLINE_ROUTINE void _Thread_Wait_release_critical(
   Thread_Control       *the_thread,
   Thread_queue_Context *queue_context
 );
+
+/*@
+  requires \valid(the_node);
+  assigns \nothing;
+  ensures \result == (RB_COLOR(the_node, Node) == -1);
+ */
+RTEMS_INLINE_ROUTINE bool _RBTree_Is_node_off_tree(
+  const RBTree_Node *the_node
+);
+
+/*@
+  requires \valid(the_node);
+  assigns RB_COLOR( the_node, Node );
+  ensures RB_COLOR( the_node, Node ) == -1;
+*/
+RTEMS_INLINE_ROUTINE void _RBTree_Set_off_tree( RBTree_Node *the_node );
