@@ -57,3 +57,27 @@ Priority_Node *_Helper_RBTree_Minimum( const RBTree_Control *tree );
   ensures \result == g_min_edf_node;
 */
 Scheduler_EDF_Node *_Helper_RBTree_EDF_Minimum( const RBTree_Control *tree );
+
+/*@
+  requires \valid(queue_context);
+  requires \valid(the_thread);
+  requires \valid(queue_context->Priority.update[0]);
+  requires queue_context->Priority.update_count  == 0;
+  assigns queue_context->Priority.update_count;
+  assigns queue_context->Priority.update[0];
+  ensures queue_context->Priority.update[0] == the_thread;
+  ensures queue_context->Priority.update_count == 1;
+*/
+RTEMS_INLINE_ROUTINE void _Thread_queue_Context_add_priority_update(
+  Thread_queue_Context *queue_context,
+  Thread_Control       *the_thread
+);
+
+/*@
+  requires \valid_read(the_thread);
+  assigns \nothing;
+  ensures \result == the_thread->Scheduler.nodes;
+ */
+RTEMS_INLINE_ROUTINE Scheduler_Node *_Thread_Scheduler_get_home_node(
+  const Thread_Control *the_thread
+);
