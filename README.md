@@ -14,8 +14,8 @@ _Formal Verification of EDF Scheduler in RTEMS_
 - [Functionlist](#functionlist)
   * [Thread Priority](#thread-priority)
   * [EDF Releasing and Cancelling a Job](#edf-releasing-and-cancelling-a-job)
-  * [EDF Update Priority (needs inline calls)](#edf-update-priority--needs-inline-calls-)
-  * [EDF Unblock (needs inline calls)](#edf-unblock--needs-inline-calls-)
+  * [EDF Update Priority](#edf-update-priority)
+  * [EDF Unblock](#edf-unblock)
 
 ## Enviroment Setup
 The contracts are tested with Frama-C 25 and Alt-Ergo 2.4.2 <br>
